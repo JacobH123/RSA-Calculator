@@ -29,7 +29,7 @@ document.getElementById("p_Input").value = p;
 document.getElementById("q_Input").value = q;
 document.getElementById("e_Input").value = e;
 
-const d = modInverse(e, phi);
+
 
 function Output() {
   input = userInputBox.value;
@@ -46,11 +46,22 @@ function calculate_n() {
 }
 
 function calculate_d() {
-  const phi =
-    (document.getElementById("p_Input").value - 1) *
-    (document.getElementById("q_Input").value - 1);
-  let d = modInverse(document.getElementById("e_Input").value, phi);
-  document.getElementById("d_Output").value = d;
+  let p = parseInt(document.getElementById("p_Input").value, 10);
+  let q = parseInt(document.getElementById("q_Input").value, 10);
+  let e = parseInt(document.getElementById("e_Input").value, 10);
+
+  if (isNaN(p) || isNaN(q) || isNaN(e)) {
+    alert("Please enter valid integers for p, q, and e");
+    return;
+  }
+
+  const phi = (p - 1) * (q - 1);
+  try {
+    let d = modInverse(e, phi);
+    document.getElementById("d_Output").value = d;
+  } catch (err) {
+    alert(err.message);
+  }
 }
 
 function decryptedOutput() {
