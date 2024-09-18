@@ -65,41 +65,31 @@ function calculate_d() {
 }
 
 function decryptedOutput() {
-  let d = parseInt(document.getElementById("d_Output").value, 10);
+  let d = document.getElementById("d_Output").value;
   const userInputBox = document.querySelector("#User_Input");
   let numbers = [];
   const list = userInputBox.value.split(" ");
-  
+  console.log(list, userInputBox);
   for (let i = 0; i < list.length; i++) {
-    let current = parseInt(list[i], 10);
-    if (isNaN(current)) {
-      alert("Please enter valid integers in the input list");
-      return;
-    }
-    let formula = Math.pow(current, d);
-    let decrypted = formula % 33;
+    current = list[i];
+    formula = Math.pow(current, d);
+    decrypted = formula % 33;
     numbers.push(decrypted);
   }
-
   document.getElementById("User_Input").value = numbers.join(" ");
 }
 
 function encryptedOutput() {
-  let e = parseInt(document.getElementById("e_Input").value, 10);
+  let e = document.getElementById("e_Input").value;
   const userInputBox = document.querySelector("#User_Input");
   let numbers = [];
   const list = userInputBox.value.split(" ");
-  
+  console.log(list, userInputBox);
   for (let i = 0; i < list.length; i++) {
-    let current = parseInt(list[i], 10);
-    if (isNaN(current)) {
-      alert("Please enter valid integers in the input list");
-      return;
-    }
-    let formula = Math.pow(current, e);
-    let encrypted = formula % 33;
+    current = list[i];
+    formula = Math.pow(current, e);
+    encrypted = formula % 33;
     numbers.push(encrypted);
   }
-
   document.getElementById("User_Input").value = numbers.join(" ");
 }
