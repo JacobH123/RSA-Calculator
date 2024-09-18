@@ -65,31 +65,33 @@ function calculate_d() {
 }
 
 function decryptedOutput() {
-  let d = document.getElementById("d_Output").value;
+  let d = BigInt(document.getElementById("d_Output").value);
   const userInputBox = document.querySelector("#User_Input");
   let numbers = [];
   const list = userInputBox.value.split(" ");
-  console.log(list, userInputBox);
+
   for (let i = 0; i < list.length; i++) {
-    current = list[i];
-    formula = Math.pow(current, d);
-    decrypted = formula % 33;
-    numbers.push(decrypted);
+    let current = BigInt(list[i]); // Convert to BigInt
+    let formula = current ** d;    // Use BigInt exponentiation
+    let decrypted = formula % BigInt(33); // Use BigInt for modulo
+    numbers.push(decrypted.toString()); // Convert result back to string for display
   }
+
   document.getElementById("User_Input").value = numbers.join(" ");
 }
 
 function encryptedOutput() {
-  let e = document.getElementById("e_Input").value;
+  let e = BigInt(document.getElementById("e_Input").value);
   const userInputBox = document.querySelector("#User_Input");
   let numbers = [];
   const list = userInputBox.value.split(" ");
-  console.log(list, userInputBox);
+
   for (let i = 0; i < list.length; i++) {
-    current = list[i];
-    formula = Math.pow(current, e);
-    encrypted = formula % 33;
-    numbers.push(encrypted);
+    let current = BigInt(list[i]); // Convert to BigInt
+    let formula = current ** e;    // Use BigInt exponentiation
+    let encrypted = formula % BigInt(33); // Use BigInt for modulo
+    numbers.push(encrypted.toString()); // Convert result back to string for display
   }
+
   document.getElementById("User_Input").value = numbers.join(" ");
 }
